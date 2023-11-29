@@ -3,9 +3,10 @@ import axios from "axios"
 import { UserErrors } from "../../errors";
 
 export const RegisterPage = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
+    // handleSubmit submit on click
     const handleSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
         try {
