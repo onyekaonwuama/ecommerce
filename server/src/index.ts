@@ -4,7 +4,7 @@ import  mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import { userRouter } from "./routes/user";
-
+import { productRouter } from "./routes/product";
 // Load environment variables from .env file
 dotenv.config();
 
@@ -19,6 +19,7 @@ app.use(cors())
 
 // routes
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 //connect to mongo database
 mongoose.connect(uri);
