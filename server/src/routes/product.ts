@@ -19,7 +19,7 @@ router.get("/", verifyToken, async (_, res: Response) => {
 });
 
 //checkout route
-router.post("/checkout", async (req: Request, res: Response) => {
+router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
     // collect user/customerID and cart items from the body
     const { customerID, cartItems } = req.body;
 
