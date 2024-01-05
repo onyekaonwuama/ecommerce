@@ -70,10 +70,25 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction ) =>
         })
     } else {
         return res.status(401);
-    }
-
-    
+    }   
 }
+
+router.get("/available-money/:userID", verifyToken, async (req: Request, res: Response) => {
+    const { userID } = req.params;
+    // console.log("userid", req.params.userID)
+
+    try {
+        const user = await UserModel.findById(userID)
+        if (!user) {
+            res.status(400).json({type: UserErrors.No_USER_FOUND})
+        }
+        res.json({ availableMoney: user.availableMoney })
+        // console.log("this is available money", user.availableMoney)
+    } catch (err) {
+        res.status(500).json({ err })
+        console.log("this is the error")
+    }
+})
 
 
 export { router as userRouter }
