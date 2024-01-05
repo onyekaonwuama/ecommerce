@@ -1,15 +1,18 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useContext } from "react";
 import axios from "axios"
 import { useCookies } from "react-cookie";
 import { UserErrors } from "../../errors";
 import { useNavigate } from "react-router";
-
+import { IShopContext, ShopContext } from "../../context/shop-context";
+import "./styles.css"
 export const LoginPage = () => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [_, setCookies] = useCookies(["access_token"])
     
     const navigate = useNavigate();
+
+    const {setIsAuthenticated} = useContext<IShopContext>(ShopContext)
 
     // handleSubmit submit on click
     const handleSubmit = async (event: SyntheticEvent) => {
@@ -23,6 +26,7 @@ export const LoginPage = () => {
             setCookies("access_token", result.data.token);
             // set/save the userID in the local storage
             localStorage.setItem("userID", result.data.userID)
+            setIsAuthenticated(true);
             navigate("/");
         } catch(err) {
             // create switches for multiple error cases

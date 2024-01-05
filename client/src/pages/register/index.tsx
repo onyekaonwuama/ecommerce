@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios"
 import { UserErrors } from "../../errors";
+import "../login/styles.css"
 
 export const RegisterPage = () => {
     const [username, setUsername] = useState<string>("");

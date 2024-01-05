@@ -4,11 +4,15 @@ import { useGetProducts } from "../../hooks/useGetProducts";
 import { IProduct } from "../../models/interface";
 import { CartItem } from "./card-item";
 import './styles.css';
+import { useNavigate } from "react-router";
 
 export const CheckoutPage = () => {
     //get counts of items for each id in the cart
-    const { getCartItemCount } = useContext<IShopContext>(ShopContext);
+    const { getCartItemCount, getTotalCartAmount, checkout } = useContext<IShopContext>(ShopContext);
     const { products } = useGetProducts();
+    const navigate = useNavigate();
+
+    const totalAmount = getTotalCartAmount()
     return (
         <div className="cart">
             <div>
@@ -20,6 +24,11 @@ export const CheckoutPage = () => {
                         return <CartItem product={product}/>
                     }
                 })}
+            </div>
+            <div className="checkout">
+                <p> Subtotal: {totalAmount.toFixed(2)}$</p>
+                <button onClick={(() => navigate("/"))}> Continue Shopping </button>
+                <button onClick={checkout}> Checkout </button>
             </div>
         </div>
     )

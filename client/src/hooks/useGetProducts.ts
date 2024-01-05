@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useGetToken } from "./useGetToken";
 import { IProduct } from "../models/interface";
+import { IShopContext, ShopContext } from "../context/shop-context";
 
 
 export const useGetProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const { headers } = useGetToken();
+    const {isAuthenticated} =useContext<IShopContext>(ShopContext)
     // function to get all products from the route in backend
     const fetchProducts = async () => {
         try {
@@ -20,8 +22,10 @@ export const useGetProducts = () => {
 
     // on page load call function.
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        if (isAuthenticated) {
+         fetchProducts();
+        }
+    }, [isAuthenticated]);
 
     return { products };
 }
