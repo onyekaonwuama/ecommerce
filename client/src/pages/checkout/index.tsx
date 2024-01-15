@@ -3,7 +3,7 @@ import { IShopContext, ShopContext } from "../../context/shop-context";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { IProduct } from "../../models/interface";
 import { CartItem } from "./card-item";
-import './styles.css';
+import './styles.scss';
 import { useNavigate } from "react-router";
 
 export const CheckoutPage = () => {

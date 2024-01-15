@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { useGetProducts } from "../../hooks/useGetProducts"
 import { Product } from "./product";
-import "./styles.css";
+import "./styles.scss";
 import { IShopContext, ShopContext } from "../../context/shop-context";
 
 export const ShopPage = () => {

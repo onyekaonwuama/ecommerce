@@ -6,30 +6,35 @@ import { IShopContext, ShopContext } from "../context/shop-context";
 import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
-  const { availableMoney, isAuthenticated, setIsAuthenticated } = useContext<IShopContext>(ShopContext);
-  const [_, setCookies] = useCookies(["access_token"])
+  const { availableMoney, isAuthenticated, setIsAuthenticated } =
+    useContext<IShopContext>(ShopContext);
+  const [_, setCookies] = useCookies(["access_token"]);
   const logout = () => {
-    setIsAuthenticated(false)
-  }
+    setIsAuthenticated(false);
+  };
   return (
     <div className="navbar">
-      <div className="navbar-title">
-        <h1> Tech Shop </h1>
+      <div className="wrapper">
+        <div className="left">
+          <h1> Tech Shop </h1>
+        </div>
+        {isAuthenticated && (
+          <>
+            <div className="right">
+              <Link to="/" className="navText"> Shop </Link>
+              <Link to="/purchased-items" className="navText"> Purchases </Link>
+              <Link to="/checkout" className="navText">
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </Link>
+              <Link to="/auth" onClick={logout} className="navText">
+                {" "}
+                Logout{" "}
+              </Link>
+              <span className="navText"> ${availableMoney.toFixed(2)}</span>
+            </div>
+          </>
+        )}
       </div>
-      {isAuthenticated && (
-        <>
-        <div className="navbar-links">
-        <Link to="/"> Shop </Link>
-        <Link to="/purchased-items"> Purchases </Link>
-        <Link to="/checkout">
-          <FontAwesomeIcon icon={faShoppingCart} />
-        </Link>
-        <Link to="/auth" onClick={logout}> Logout </Link>
-        <span> ${availableMoney.toFixed(2)}</span>
-      </div>
-        </>
-      )}
-
     </div>
   );
 };
