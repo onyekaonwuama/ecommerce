@@ -13,6 +13,7 @@ export const useGetProducts = () => {
     const fetchProducts = async () => {
         try {
             const fetchedProducts = await axios.get("http://localhost:3001/product", {headers});
+            console.log({fetchedProducts})
             // set products state with the products returned
             setProducts(fetchedProducts.data.products);
         } catch (err) {
@@ -21,11 +22,16 @@ export const useGetProducts = () => {
     };
 
     // on page load call function.
-    useEffect(() => {
-        if (isAuthenticated) {
-         fetchProducts();
-        }
-    }, [isAuthenticated]);
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //      fetchProducts();
+    //     }
+    // }, [isAuthenticated]);
 
+    useEffect(() => {
+        fetchProducts();
+      }, [])
+
+    console.log({'product from useGetProducts': products})
     return { products };
 }

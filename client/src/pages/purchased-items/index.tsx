@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { IShopContext, ShopContext } from "../../context/shop-context";
-import "./styles.css";
+import "./styles.scss";
 
 export const PurchasedItemsPage = () => {
   const { purchasedItems, addToCart, getCartItemCount } = useContext<IShopContext>(ShopContext);

@@ -44,6 +44,7 @@ export const ShopContextProvider = (props) => {
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
     const {products} = useGetProducts();
+    console.log({'producrts in shop context': products})
     //get the token to pass as headers to the checkout api
     const { headers } = useGetToken();
     const navigate = useNavigate();
@@ -91,7 +92,7 @@ export const ShopContextProvider = (props) => {
     const addToCart = (itemId: string) => {
         //checks if itemId exists in the cart items
         //if not it has just 1 as amt else it increases by 1
-        console.log(itemId)
+        console.log("this is added iteid", itemId)
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1}));
         } else {
@@ -115,10 +116,12 @@ export const ShopContextProvider = (props) => {
     const getTotalCartAmount = (): number => {
         let totalAmount = 0;
         for (const item in cartItems) {
-            if (cartItems[item] > 0) {
+            console.log({products})
+            if (products.length > 0 && cartItems[item] > 0) {
                 let itemInfo: IProduct = products.find(
-                    (product) =>product._id === item
+                    (product) => product._id === item
                 );
+                console.log("this is itemInfo", itemInfo)
                 totalAmount += cartItems[item] * itemInfo.price
             }
         }
@@ -144,7 +147,7 @@ export const ShopContextProvider = (props) => {
     useEffect(() => {
         if (isAuthenticated) {
             fetchAvailableMoney();
-            fetchPurchasedItems();
+            // fetchPurchasedItems();
         }
     }, [isAuthenticated]);
 

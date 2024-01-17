@@ -27,8 +27,11 @@ export const CheckoutPage = () => {
             </div>
             <div className="checkout">
                 <p> Subtotal: {totalAmount.toFixed(2)}$</p>
+                <div className="buttonCase">
                 <button onClick={(() => navigate("/"))}> Continue Shopping </button>
                 <button onClick={checkout}> Checkout </button>
+                </div>
+                
             </div>
         </div>
     )

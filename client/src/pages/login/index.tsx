@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { UserErrors } from "../../errors";
 import { useNavigate } from "react-router";
 import { IShopContext, ShopContext } from "../../context/shop-context";
-import "./styles.css"
+import "./styles.scss"
 export const LoginPage = () => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");

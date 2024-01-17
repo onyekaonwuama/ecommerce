@@ -16,21 +16,20 @@ export const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="left">
-          <h1> Tech Shop </h1>
+          <h1> AdTech </h1>
         </div>
         {isAuthenticated && (
           <>
             <div className="right">
               <Link to="/" className="navText"> Shop </Link>
               <Link to="/purchased-items" className="navText"> Purchases </Link>
-              <Link to="/checkout" className="navText">
+              <Link to="/checkout" className="navMob">
                 <FontAwesomeIcon icon={faShoppingCart} />
               </Link>
-              <Link to="/auth" onClick={logout} className="navText">
-                {" "}
-                Logout{" "}
+              <Link to="/auth" onClick={logout} className="navMob">
+                Logout
               </Link>
-              <span className="navText"> ${availableMoney.toFixed(2)}</span>
+              <span className="navMob"> ${availableMoney.toFixed(2)}</span>
             </div>
           </>
         )}
