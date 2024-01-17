@@ -4,7 +4,7 @@
 .cart {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 24px;
   align-items: center;
   .cartItem {
     width: 700px;
@@ -13,21 +13,48 @@
     align-items: center;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     border-radius: 25px;
-    margin: 30px;
+    padding: 20px;
+
+    @include md {
+      flex-direction: column;
+      width: 300px;
+      height: 400px;
+    }
+
+    .description {
+      width: 100%;
+      h3,
+      p {
+        font-size: 20px;
+        color: $main-text;
+      }
+    }
+    .count-handler {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .controlButton {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        border: 1px solid $main-text;
+        padding: 5px;
+        background-color: $main-bg;
+      }
+      
+      input {
+        width: 30px;
+        text-align: center;
+        color: $main-text;
+      }
+    }
   }
   .cartItem img {
     width: 200px;
     margin-left: 50px;
   }
-  .cartItem .description {
-    width: 100%;
-    font-size: 30px;
-  }
-  .countHandler input {
-    width: 40px;
-    text-align: center;
-    font-weight: bolder;
-  }
+
   .checkout {
     display: flex;
     flex-direction: column;
@@ -37,7 +64,7 @@
         width: 150px;
         height: 50px;
         background-color: $secondary-bg;
-        color: $main-text;
+        color: $button-text;
         border: none;
         border-radius: 8px;
         margin: 10px;

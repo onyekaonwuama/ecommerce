@@ -13,6 +13,7 @@ export const CheckoutPage = () => {
     const navigate = useNavigate();
 
     const totalAmount = getTotalCartAmount()
+    
     return (
         <div className="cart">
             <div>

@@ -18,6 +18,7 @@ export interface IShopContext {
     purchasedItems: IProduct[];
     isAuthenticated: boolean,
     setIsAuthenticated: (isAAuthenticated: boolean) => void;
+    getCountInCart: () => number;
 }
 
 //default value of interface would be the functions returning null
@@ -32,6 +33,7 @@ const defaultVal: IShopContext = {
     purchasedItems: [],
     isAuthenticated: false,
     setIsAuthenticated: () => null,
+    getCountInCart: () => 0,
 };
 
 export const ShopContext = createContext<IShopContext>(defaultVal);
@@ -44,7 +46,7 @@ export const ShopContextProvider = (props) => {
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
     const {products} = useGetProducts();
-    console.log({'producrts in shop context': products})
+
     //get the token to pass as headers to the checkout api
     const { headers } = useGetToken();
     const navigate = useNavigate();
@@ -88,6 +90,20 @@ export const ShopContextProvider = (props) => {
         }
         return 0
     }
+
+    const getCountInCart = (): number => {
+        let totalCount = 0;
+        
+        //count the nummber of occurrence of the value of the itemid
+        for (const key in cartItems) {
+            if (cartItems.hasOwnProperty(key)) {
+                const value = cartItems[key]
+                totalCount += value
+            }
+        }
+        return totalCount
+    }
+    
 
     const addToCart = (itemId: string) => {
         //checks if itemId exists in the cart items
@@ -138,6 +154,7 @@ export const ShopContextProvider = (props) => {
             setCartItems({})
             fetchAvailableMoney();
             fetchPurchasedItems();
+            getCountInCart();
             navigate("/");
         } catch (err) {
             console.log(err);
@@ -147,7 +164,7 @@ export const ShopContextProvider = (props) => {
     useEffect(() => {
         if (isAuthenticated) {
             fetchAvailableMoney();
-            // fetchPurchasedItems();
+            fetchPurchasedItems();
         }
     }, [isAuthenticated]);
 
@@ -175,6 +192,7 @@ export const ShopContextProvider = (props) => {
         purchasedItems,
         isAuthenticated,
         setIsAuthenticated,
+        getCountInCart,
     };
 
     return (

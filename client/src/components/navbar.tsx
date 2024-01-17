@@ -6,9 +6,10 @@ import { IShopContext, ShopContext } from "../context/shop-context";
 import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
-  const { availableMoney, isAuthenticated, setIsAuthenticated } =
+  const { getCountInCart, availableMoney, isAuthenticated, setIsAuthenticated } =
     useContext<IShopContext>(ShopContext);
   const [_, setCookies] = useCookies(["access_token"]);
+  const totalCount = getCountInCart();
   const logout = () => {
     setIsAuthenticated(false);
   };
@@ -16,15 +17,16 @@ export const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="left">
-          <h1> AdTech </h1>
+        <Link to="/" className="logo"> AdTech </Link>
         </div>
         {isAuthenticated && (
           <>
             <div className="right">
               <Link to="/" className="navText"> Shop </Link>
               <Link to="/purchased-items" className="navText"> Purchases </Link>
-              <Link to="/checkout" className="navMob">
+              <Link to="/checkout" className="navMob shoppingCart">
                 <FontAwesomeIcon icon={faShoppingCart} />
+                {totalCount > 0 && <span className="countCart">{totalCount}</span>}
               </Link>
               <Link to="/auth" onClick={logout} className="navMob">
                 Logout

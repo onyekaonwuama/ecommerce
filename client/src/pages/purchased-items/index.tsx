@@ -7,7 +7,7 @@ export const PurchasedItemsPage = () => {
 
   return (
     <div className="purchased-items-page">
-      <h1> Previously Purchased Items Page </h1>
+      <h1> Previously Purchased Items </h1>
 
       <div className="purchased-items">
         {purchasedItems.map((item) => {
@@ -15,8 +15,8 @@ export const PurchasedItemsPage = () => {
           const cartItemCount = getCartItemCount(item._id);
           return (
             <div className="item">
-              <h3> {item.productName} </h3>
               <img src={item.imageURL} alt={item.productName} />
+              <h3> {item.productName} </h3>
               <p> ${item.price} </p>
               <button onClick={() => addToCart(item._id)}>
                 Purchase Again {cartItemCount > 0 && <> ({cartItemCount})</>}
