@@ -16,6 +16,9 @@
   .toggle-link {
     font-size: 12px;
     cursor: pointer;
+    &:hover {
+      color: $secondary-bg;
+    }
   }
 }
 
