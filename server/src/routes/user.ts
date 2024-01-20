@@ -59,6 +59,7 @@ router.post("/login", async (req: Request, res: Response) => {
 
 // create verification to ensure only authenticated users are making requests
 export const verifyToken = (req: Request, res: Response, next: NextFunction ) => {
+    console.log("hitting the midware", req.headers.authorization)
     const authHeader = req.headers.authorization
     if (authHeader) {
         jwt.verify(authHeader, jwtSecret, (err) => {
@@ -86,7 +87,7 @@ router.get("/available-money/:userID", verifyToken, async (req: Request, res: Re
         // console.log("this is available money", user.availableMoney)
     } catch (err) {
         res.status(500).json({ err })
-        console.log("this is the error")
+        console.log("this is the error user", err)
     }
 })
 

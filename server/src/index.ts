@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import  mongoose from "mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import { userRouter } from "./routes/user";
@@ -8,14 +8,14 @@ import { productRouter } from "./routes/product";
 // Load environment variables from .env file
 dotenv.config();
 
-const uri = process.env.REACT_APP_MONGODB_URI
+const uri = process.env.REACT_APP_MONGODB_URI;
 
 //the app an instance of express
-const app = express()
+const app = express();
 
 //middlewares for the express application
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
 // routes
 app.use("/user", userRouter);
@@ -31,4 +31,4 @@ connection.once("open", () => {
 });
 
 
-app.listen(3001, () => console.log("server has started"))
+app.listen(3002, () => console.log("server has started"));

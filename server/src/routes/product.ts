@@ -76,24 +76,25 @@ router.post("/checkout", verifyToken, async (req: Request, res: Response) => {
     } catch(err) {
         res.status(400).json(err);
     }
+})
 
-    router.get("/purchased-items/:customerID", verifyToken, async (req: Request, res: Response) => {
-        const { customerID } = req.params;
-        // console.log("userid", req.params.userID)
-    
-        try {
-            const user = await UserModel.findById(customerID)
-            if (!user) {
-                res.status(400).json({type: UserErrors.No_USER_FOUND})
-            }
-            //retrieve ids from user model
-            const products = await ProductModel.find({ _id: { $in: user.purchasedItems }})
-            res.json({ purchasedItems: products })
-        } catch (err) {
-            res.status(500).json({ err })
-            console.log("this is the error")
+router.get("/purchased-items/:customerID", verifyToken, async (req: Request, res: Response) => {
+    console.log('Purchase item route handler *******')
+    const { customerID } = req.params;
+    // console.log("userid", req.params.userID)
+
+    try {
+        const user = await UserModel.findById(customerID)
+        if (!user) {
+            res.status(400).json({type: UserErrors.No_USER_FOUND})
         }
-    })
+        //retrieve ids from user model
+        const products = await ProductModel.find({ _id: { $in: user.purchasedItems }})
+        res.json({ purchasedItems: products })
+    } catch (err) {
+        res.status(500).json({ err })
+        console.log("this is the error product", err)
+    }
 })
 
 export { router as productRouter };
