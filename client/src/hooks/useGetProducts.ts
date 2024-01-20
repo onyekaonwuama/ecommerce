@@ -4,34 +4,39 @@ import { useGetToken } from "./useGetToken";
 import { IProduct } from "../models/interface";
 import { IShopContext, ShopContext } from "../context/shop-context";
 
-
 export const useGetProducts = () => {
-    const [products, setProducts] = useState<IProduct[]>([]);
-    const { headers } = useGetToken();
-    const {isAuthenticated} =useContext<IShopContext>(ShopContext)
-    // function to get all products from the route in backend
-    const fetchProducts = async () => {
-        try {
-            const fetchedProducts = await axios.get("http://localhost:3001/product", {headers});
-            console.log({fetchedProducts})
-            // set products state with the products returned
-            setProducts(fetchedProducts.data.products);
-        } catch (err) {
-            alert("Error: Something went wrong.");
-        }
-    };
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { headers } = useGetToken();
+  const { isAuthenticated } = useContext<IShopContext>(ShopContext);
+  // function to get all products from the route in backend
+  const fetchProducts = async () => {
+    try {
+      setLoading(true)
+      const fetchedProducts = await axios.get("http://localhost:3002/product", {
+        headers,
+      });
+      console.log({ fetchedProducts });
+      // set products state with the products returned
+      setProducts(fetchedProducts.data.products);
+      setLoading(false)
+    } catch (err) {
+      console.log({"Error in used getproducts": err})
+      alert("Error: Something went wrong.");
+    }
+  };
 
-    // on page load call function.
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //      fetchProducts();
-    //     }
-    // }, [isAuthenticated]);
+  // on page load call function.
+  // useEffect(() => {
+  //     if (isAuthenticated) {
+  //      fetchProducts();
+  //     }
+  // }, [isAuthenticated]);
 
-    useEffect(() => {
-        fetchProducts();
-      }, [])
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-    console.log({'product from useGetProducts': products})
-    return { products };
-}
+  console.log({ "product from useGetProducts": products });
+  return { products, loading };
+};
