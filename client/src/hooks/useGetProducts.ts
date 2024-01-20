@@ -19,7 +19,9 @@ export const useGetProducts = () => {
       console.log({ fetchedProducts });
       // set products state with the products returned
       setProducts(fetchedProducts.data.products);
-      setLoading(false)
+      if (isAuthenticated && fetchProducts) {
+        setLoading(false)
+      }
     } catch (err) {
       console.log({"Error in used getproducts": err})
       alert("Error: Something went wrong.");
