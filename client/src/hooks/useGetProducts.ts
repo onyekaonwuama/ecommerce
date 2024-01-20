@@ -19,26 +19,20 @@ export const useGetProducts = () => {
       console.log({ fetchedProducts });
       // set products state with the products returned
       setProducts(fetchedProducts.data.products);
+      
+      // check authentication and fetched products
       if (isAuthenticated && fetchProducts) {
         setLoading(false)
       }
     } catch (err) {
-      console.log({"Error in used getproducts": err})
       alert("Error: Something went wrong.");
     }
   };
-
-  // on page load call function.
-  // useEffect(() => {
-  //     if (isAuthenticated) {
-  //      fetchProducts();
-  //     }
-  // }, [isAuthenticated]);
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  console.log({ "product from useGetProducts": products });
+  // console.log({ "product from useGetProducts": products });
   return { products, loading };
 };

@@ -86,8 +86,7 @@ export const ShopContextProvider = (props) => {
       setPurchasedItems(res.data.purchasedItems);
       // console.log("this money", res.data.availableMoney)
     } catch (err) {
-      console.log({"Error in used fetch purchased items": err})
-
+      // console.log({"Error in used fetch purchased items": err})
       alert("ERROR: Something went wrong.");
     }
   };
