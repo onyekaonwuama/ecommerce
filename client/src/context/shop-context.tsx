@@ -170,7 +170,7 @@ export const ShopContextProvider = (props) => {
   };
 
   useEffect(() => {
-    if (!isAuthenticated && loading) {
+    if (!isAuthenticated && loading === false) {
       return
     }
     fetchAvailableMoney();
