@@ -25,7 +25,7 @@ export const useGetProducts = () => {
         setLoading(false)
       }
     } catch (err) {
-      alert("Error: Something went wrong.");
+      alert("Error: Something went wrong. UGp");
     }
   };
 

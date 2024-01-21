@@ -87,7 +87,7 @@ export const ShopContextProvider = (props) => {
       // console.log("this money", res.data.availableMoney)
     } catch (err) {
       // console.log({"Error in used fetch purchased items": err})
-      alert("ERROR: Something went wrong.");
+      alert("ERROR: Something went wrong. fgp");
     }
   };
   //to check amount of items of itemId in cat items
