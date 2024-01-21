@@ -1,7 +1,6 @@
 import { RegisterPage } from "../register";
 import { LoginPage } from "../login";
 import { useState } from "react";
-// import { IShopContext, ShopContext } from "../../context/shop-context";
 
 export const AuthPage = () => {
   const [showRegister, setShowRegister] = useState(true);
@@ -15,7 +14,7 @@ export const AuthPage = () => {
       <div className="toggle-link" onClick={togglePage}>
         {showRegister
           ? "Already have an account? Login"
-          : "Don't have an account? Register"}
+          : "Don't have an account? Create an account"}
       </div>
     </div>
   );
