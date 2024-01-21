@@ -175,7 +175,7 @@ export const ShopContextProvider = (props) => {
     }
     fetchAvailableMoney();
     fetchPurchasedItems();
-  }, [isAuthenticated]);
+  }, []);
 
   //to clear storage and set cookies to null if not logged in
   //to be triggered upon change of status for isAuthenticated
