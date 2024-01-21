@@ -25,6 +25,7 @@ export const useGetProducts = () => {
         setLoading(false)
       }
     } catch (err) {
+      console.log("this is ugp err", err)
       alert("Error: Something went wrong. UGp");
     }
   };
