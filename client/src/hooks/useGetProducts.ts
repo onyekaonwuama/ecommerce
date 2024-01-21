@@ -31,8 +31,8 @@ export const useGetProducts = () => {
 
   useEffect(() => {
     if (loading === false) {
-      fetchProducts();
     }
+    fetchProducts();
   }, []);
 
   // console.log({ "product from useGetProducts": products });
