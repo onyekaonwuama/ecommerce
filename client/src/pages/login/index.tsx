@@ -27,6 +27,8 @@ export const LoginPage = () => {
       // set/save the userID in the local storage
       localStorage.setItem("userID", result.data.userID);
       setIsAuthenticated(true);
+      setUsername("");
+      setPassword("");
       navigate("/");
     } catch (err) {
       console.log({err})

@@ -1,6 +1,6 @@
 import { RegisterPage } from "../register";
 import { LoginPage } from "../login";
-import { useContext, useState } from "react";
+import { useState } from "react";
 // import { IShopContext, ShopContext } from "../../context/shop-context";
 
 export const AuthPage = () => {

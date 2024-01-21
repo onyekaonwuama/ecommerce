@@ -15,6 +15,8 @@ export const RegisterPage = () => {
         username,
         password,
       });
+      setUsername("");
+      setPassword("");
       alert("Registration successful, now login");
     } catch (err) {
       if (err?.response?.data?.type === UserErrors.USERNAME_ALREADY_EXISTS) {
@@ -49,7 +51,6 @@ export const RegisterPage = () => {
           />
         </div>
         <button type="submit"> Register </button>
-        {/* <span>Already have an account?<button>Login</button></span> */}
       </form>
     </div>
   );
