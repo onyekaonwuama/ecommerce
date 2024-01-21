@@ -5,11 +5,7 @@ import { useContext } from "react";
 import { IShopContext, ShopContext } from "../context/shop-context";
 import { useCookies } from "react-cookie";
 
-interface Props {
-  user: boolean;
-}
-
-export const Navbar = (props:Props) => {
+export const Navbar = () => {
   const { getCountInCart, availableMoney, isAuthenticated, setIsAuthenticated } =
     useContext<IShopContext>(ShopContext);
   const [_, setCookies] = useCookies(["access_token"]);

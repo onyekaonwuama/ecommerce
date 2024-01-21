@@ -11,7 +11,7 @@ export const ShopPage = () => {
     const {isAuthenticated} = useContext<IShopContext>(ShopContext);
 
     // navigate to auth page if not authenticated
-    console.log({isAuthenticated})
+    console.log("auth val in shopage", {isAuthenticated})
     if (!isAuthenticated) {
         return <Navigate to="/auth"/>
     }

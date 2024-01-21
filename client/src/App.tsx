@@ -7,23 +7,21 @@ import { PurchasedItemsPage } from "./pages/purchased-items";
 import { ShopPage } from "./pages/shop";
 import { IShopContext, ShopContext, ShopContextProvider } from "./context/shop-context";
 import { useContext, useState } from "react";
-import { useGetProducts } from "./hooks/useGetProducts";
-import { LoadingComponent } from "./pages/loadingComponent";
 
 
 function App() {
-  const { isAuthenticated } = useContext<IShopContext>(ShopContext);
-  const [user, setUser] = useState<any>(null)
+  // const { isAuthenticated } = useContext<IShopContext>(ShopContext);
+  // const [user, setUser] = useState<any>(null)
 
-  if (isAuthenticated) {
-    setUser(true)
-  }
+  // if (isAuthenticated) {
+  //   setUser(true)
+  // }
 
   return (
     <div className="App">
       <Router>
         <ShopContextProvider>
-        <Navbar user={user}/>
+        <Navbar/>
         <Routes>
           <Route path="/auth" element={<AuthPage/>}/>
           <Route path="/" element={<ShopPage />}/>

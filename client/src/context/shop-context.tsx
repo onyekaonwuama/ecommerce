@@ -169,23 +169,30 @@ export const ShopContextProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (!isAuthenticated && loading === false) {
-      return
-    }
-    fetchAvailableMoney();
-    fetchPurchasedItems();
-  }, []);
-
-  //to clear storage and set cookies to null if not logged in
+    //to clear storage and set cookies to null if not logged in
   //to be triggered upon change of status for isAuthenticated
+
+
+
+  useEffect(() => {
+    if (!isAuthenticated || localStorage.getItem("userID") === null) {
+      setIsAuthenticated(false);
+    }
+    if (isAuthenticated) {
+      fetchAvailableMoney();
+      fetchPurchasedItems();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (!isAuthenticated) {
       localStorage.clear();
       setCookies("access_token", null);
+      setIsAuthenticated(false);
     }
   }, [isAuthenticated]);
+
+
 
   const contextValue: IShopContext = {
     addToCart,
