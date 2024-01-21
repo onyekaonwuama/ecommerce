@@ -47,7 +47,7 @@ export const ShopContextProvider = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     cookies.access_token !== null
   );
-  const { products } = useGetProducts();
+  const { products, loading } = useGetProducts();
 
   //get the token to pass as headers to the checkout api
   const { headers } = useGetToken();
@@ -170,10 +170,11 @@ export const ShopContextProvider = (props) => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchAvailableMoney();
-      fetchPurchasedItems();
+    if (!isAuthenticated && loading) {
+      return
     }
+    fetchAvailableMoney();
+    fetchPurchasedItems();
   }, [isAuthenticated]);
 
   //to clear storage and set cookies to null if not logged in

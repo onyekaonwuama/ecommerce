@@ -30,6 +30,9 @@ export const useGetProducts = () => {
   };
 
   useEffect(() => {
+    if (loading === false) {
+      return
+    }
     fetchProducts();
   }, []);
 
